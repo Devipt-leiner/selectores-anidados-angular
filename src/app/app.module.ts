@@ -4,7 +4,10 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { CurrencyMaskModule } from "ng2-currency-mask";
+
 import { CountriesModule } from './countries/countries.module';
+import { CurrencyPipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -14,9 +17,12 @@ import { CountriesModule } from './countries/countries.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    CountriesModule
+    CountriesModule,
+    CurrencyMaskModule
   ],
-  providers: [],
+  providers: [
+    CurrencyPipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

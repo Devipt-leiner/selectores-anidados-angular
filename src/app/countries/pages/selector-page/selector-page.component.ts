@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { switchMap, tap } from "rxjs/operators";
 
@@ -14,6 +14,7 @@ import { Country, CountryByCode } from '../../interfaces/countries.interface';
 export class SelectorPageComponent implements OnInit {
 
   myForm!: FormGroup;
+  price = new FormControl(10000);
 
   // Llenar selectores
   regions: string[] = [];
@@ -28,10 +29,17 @@ export class SelectorPageComponent implements OnInit {
     private countriesService: CountriesService
   ) {
     this.myForm = this.fb.group({
+      price_mask: ['', [Validators.required]],
       region: ['', [Validators.required]],
       country: ['', [Validators.required]],
       borders: ['', [Validators.required]],
     })
+  }
+
+  set control(value: AbstractControl | string) {
+    if (this.myForm.controls['price_mask'] !== value) {
+      this.myForm.controls['price_mask'] = value as FormControl;
+    }
   }
 
   ngOnInit(): void {

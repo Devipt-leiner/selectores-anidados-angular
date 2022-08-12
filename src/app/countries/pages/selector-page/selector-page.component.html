@@ -2,6 +2,31 @@
 <hr>
 
 <form (ngSubmit)="save()" [formGroup]="myForm">
+  <!-- Input Currency Mask -->
+  <div class="row mb-3">
+    <div class="col">
+      <label class="form-label">Máscara con librería:</label>
+      <input
+        currencyMask
+        class="form-control"
+        placeholder="Ingrese el valor"
+        [formControl]="price"
+        [options]="{ prefix: '$ ', thousands: '.', decimal: ',', allowNegative: false }"
+      >
+    </div>
+  </div>
+
+  <!-- Input Angular Currency Mask -->
+  <div class="row mb-3">
+    <div class="col">
+      <label class="form-label">Máscara propia de Angular:</label>
+      <app-input
+        [controlName]="'price_mask'"
+        [control]="myForm.controls['price_mask']"
+      ></app-input>
+    </div>
+  </div>
+
   <!-- Region -->
   <div class="row mb-3">
     <div class="col">
